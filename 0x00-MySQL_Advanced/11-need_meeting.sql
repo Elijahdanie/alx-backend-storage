@@ -1,1 +1,11 @@
--- Create a 
+-- Create a view that list students with score
+-- less thn 80 and no last meeting
+
+
+DROP VIEW IF EXISTS need_meeting;
+
+CREATE VIEW need_meeting AS
+SELECT name 
+FROM students 
+WHERE score < 80 AND 
+(last_meeting IS NULL OR last_meeting < DATE(CURDATE() - INTERVAL 1 MONTH));
