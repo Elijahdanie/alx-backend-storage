@@ -1,4 +1,5 @@
--- Resets the attribute valid_email only when the email has been changed
+-- Resets the valid_email column of table users
+-- On Updateß
 
 DELIMITER //
 CREATE TRIGGER reset
@@ -10,4 +11,3 @@ BEGIN
 	SET NEW.valid_email = 0;
 END IF;
 END; //
-

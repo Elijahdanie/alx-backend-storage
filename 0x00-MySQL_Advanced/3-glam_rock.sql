@@ -1,4 +1,5 @@
 -- This selects the bands with style Glam_rock
-SELECT band_name, COALESCE(split, 2020) - formed as lifespan
-WHERE style like '%Glam rock%'
-ORDER BY lifespan DESC;
+SELECT DISTINCT `band_name`,
+                IFNULL(`split`, 2020) - `formed` as `lifespan`
+  FROM `metal_bands` WHERE FIND_IN_SET('Glam rock', style)
+  ORDER BY `lifespan` DESC;
