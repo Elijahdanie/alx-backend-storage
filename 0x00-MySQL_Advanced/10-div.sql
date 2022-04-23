@@ -4,17 +4,17 @@
 DELIMITER //
 
 CREATE FUNCTION SafeDiv (
-    a INT,
-    b INT,
+    a INTEGER,
+    b INTEGER
 )
-RETURNS INT
+RETURNS INTEGER
 
 BEGIN
-    DECLARE result = 0;
+    DECLARE result FLOAT;
     IF b = 0 THEN
         SET result = 0;
     ELSE
-        SET result = (a / b);
+        SET result = ((a * 1.0) / b);
     END IF
     RETURN result
 END //
