@@ -1,6 +1,6 @@
 //Updates the school collection
 // with only documents with name="Holberton school"
 
-db.school.update({name:"Holberton school"},{
+db.school.update({name:"Holberton school"},{$set: {
     address: "972 Mission street"
-})
+}})
