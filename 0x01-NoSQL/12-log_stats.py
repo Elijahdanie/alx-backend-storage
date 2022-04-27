@@ -14,7 +14,7 @@ if __name__ == "__main__":
     client = MongoClient()
     collection = client.logs.nginx
     http_request = ["GET", "POST", "PUT", "PATCH", "DELETE"]
-    total_logs = collection.count_documents()
+    total_logs = collection.count_documents({})
     print('{} logs'.format(total_logs))
     print('Methods:')
     for req in http_request:
