@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 def schools_by_topic(mongo_collection, topic):
     """
     This functions returns a list of
