@@ -11,7 +11,7 @@ if __name__ == "__main__":
     and logs information in the logs collection
     """
     client = MongoClient('mongodb://127.0.0.1:27017')
-    db = client.logs
+    db = client['logs']
     http_request = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     total_logs = db.nginx.count_documents({})
     print('{} logs'.format(total_logs))
