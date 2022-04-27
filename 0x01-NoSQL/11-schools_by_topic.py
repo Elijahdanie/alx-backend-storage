@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+"""
+This module demonstrates querying
+mongodb collection with a constraint
+"""
+
 
 def schools_by_topic(mongo_collection, topic):
     """
