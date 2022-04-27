@@ -15,13 +15,13 @@ if __name__ == "__main__":
     collection = client.logs.nginx
     http_request = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     total_logs = collection.count_documents({})
-    print('{} logs'.format(total_logs))
+    print(f'{total_logs} logs')
     print('Methods:')
     for req in http_request:
         count = collection.count_documents({"method": req})
-        print('\tmethod {}: {}'.format(req, count))
+        print(f'\tmethod {req}: {count}')
 
     stats = collection.count_documents(
         {"method": "GET", "path": "/status"}
         )
-    print('{} status check'.format(stats))
+    print(f'{stats} status check')
