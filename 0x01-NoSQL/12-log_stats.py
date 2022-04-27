@@ -10,17 +10,17 @@ if __name__ == "__main__":
     Fetches and format status, HTTP Request
     and logs information in the logs collection
     """
-    client = MongoClient('mongodb://127.0.0.1:27017')
-    collection = client.logs.nginx
+    client = MongoClient()
+    db = client["logs"]
     http_request = ["GET", "POST", "PUT", "PATCH", "DELETE"]
-    total_logs = collection.count_documents({})
+    total_logs = db.nginx.count_documents({})
     print('{} logs'.format(total_logs))
     print('Methods:')
     for req in http_request:
-        count = collection.count_documents({"method": req})
+        count = db.nginx.count_documents({"method": req})
         print('\tmethod {}: {}'.format(req, count))
 
-    stats = collection.count_documents(
+    stats = db.nginx.count_documents(
         {"method": "GET", "path": "/status"}
         )
     print('{} status check'.format(stats))

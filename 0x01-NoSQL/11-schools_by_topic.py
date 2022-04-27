@@ -12,5 +12,5 @@ def schools_by_topic(mongo_collection, topic):
     all documents in the collection mongo_collection
     with the topic specified in the arguments
     """
-    results = mongo_collection.find({'$in': [topic]})
-    return results
+    result = mongo_collection.find({"topics":  {"$in": [topic]}})
+    return result
