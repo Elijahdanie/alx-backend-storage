@@ -20,10 +20,27 @@ def count_calls(method: Callable) -> Callable:
 
     @wraps(method)
     def wrapper_func(self, *args, **kwargs):
-        self.redis.incr(key)
+        """
+        the function wrapper f(n)
+        """
+        self._redis.incr(key)
         return method(self, *args, **kwargs)
     return wrapper_func
 
+def call_history(method: Callable) -> Callable:
+    """decorator function to recode parameter & output history"""
+    key = method.__qualname__
+    inputs = key + ":inputs"
+    outputs = key + ":outputs"
+
+    @wraps(method)
+    def wrapper(self, *args, **kwds):
+        """function wrapper f(n)"""
+        self._redis.rpush(inputs, str(args))
+        data = method(self, *args, **kwds)
+        self._redis.rpush(outputs, str(data))
+        return data
+    return wrapper
 
 class Cache:
     def __init__(self):
